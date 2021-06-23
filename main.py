@@ -1,19 +1,14 @@
-# fmt: off
-
-import matplotlib.pyplot as plt
-
+import os
+import sys
 from time import time
 from typing import Tuple
 
+import matplotlib.pyplot as plt
+import numpy as np
 from sklearn import metrics
 from sklearn.cluster import DBSCAN
 from sklearn.datasets import make_blobs
 from sklearn.preprocessing import StandardScaler
-
-import numpy as np
-
-import os
-import sys
 
 
 def scale_data(X: np.ndarray) -> np.ndarray:
@@ -30,7 +25,7 @@ def get_data() -> Tuple[np.ndarray, np.ndarray]:
     return X, labels
 
 
-def main() -> None:
+def main() -> int:
     """
     This docstring should describe what this functions does.
     """
@@ -52,8 +47,12 @@ def main() -> None:
     print("Homogeneity: %0.3f" % metrics.homogeneity_score(labels_true, labels))
     print("Completeness: %0.3f" % metrics.completeness_score(labels_true, labels))
     print("V-measure: %0.3f" % metrics.v_measure_score(labels_true, labels))
-    print("Adjusted Rand Index: %0.3f" % metrics.adjusted_rand_score(labels_true, labels))
-    print("Adjusted Mutual Information: %0.3f" % metrics.adjusted_mutual_info_score(labels_true, labels)
+    print(
+        "Adjusted Rand Index: %0.3f" % metrics.adjusted_rand_score(labels_true, labels)
+    )
+    print(
+        "Adjusted Mutual Information: %0.3f"
+        % metrics.adjusted_mutual_info_score(labels_true, labels)
     )
     print("Silhouette Coefficient: %0.3f" % metrics.silhouette_score(X, labels))
 
@@ -67,13 +66,29 @@ def main() -> None:
         class_member_mask = labels == k
 
         xy = X[class_member_mask & core_samples_mask]
-        plt.plot(xy[:, 0], xy[:, 1], "o", markerfacecolor=tuple(col), markeredgecolor="k", markersize=14)
+        plt.plot(
+            xy[:, 0],
+            xy[:, 1],
+            "o",
+            markerfacecolor=tuple(col),
+            markeredgecolor="k",
+            markersize=14,
+        )
 
         xy = X[class_member_mask & ~core_samples_mask]
-        plt.plot(xy[:, 0], xy[:, 1], "o", markerfacecolor=tuple(col),markeredgecolor="k", markersize=6)
+        plt.plot(
+            xy[:, 0],
+            xy[:, 1],
+            "o",
+            markerfacecolor=tuple(col),
+            markeredgecolor="k",
+            markersize=6,
+        )
     plt.title("Estimated number of clusters: %d" % n_clusters_)
     plt.savefig("cluster_plot.png")
-    return
+
+    return 0
+
 
 if __name__ == "__main__":
     sys.exit(main())

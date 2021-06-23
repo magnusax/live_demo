@@ -1,0 +1,5 @@
+[flake8]
+ignore = F401
+max-line-length = 90
+exclude = requirements-dev.txt
+max-complexity = 10
