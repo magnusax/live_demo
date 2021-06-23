@@ -1,4 +1,4 @@
-[!Live Demo CI script](https://github.com/magnusax/live_demo/actions/workflows/python.yml/badge.svg)](https://github.com/magnusax/live_demo/actions/workflows/python.yml)
+[![Live Demo CI script](https://github.com/magnusax/live_demo/actions/workflows/python.yml/badge.svg)](https://github.com/magnusax/live_demo/actions/workflows/python.yml)
 
 
 # live_demo
